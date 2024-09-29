@@ -1,18 +1,13 @@
-## Equality
+## So Sánh Bằng
 
-One thing to be careful about in JavaScript is the difference between `==` and `===`. As JavaScript tries to
-be resilient against programming errors `==` tries to do type coercion between two variables e.g. converts a
-string to a number so that you can compare with a number as shown below:
+Một điều cần lưu ý trong JavaScript là sự khác biệt giữa `==` và `===`. Vì JavaScript cố gắng "kiên nhẫn" với các lỗi lập trình, nên `==` sẽ cố gắng thực hiện _ép kiểu_ giữa hai biến, ví dụ như chuyển một chuỗi sang số để có thể so sánh với số như minh họa dưới đây:
 
 ```js
 console.log(5 == "5"); // true   , TS Error
 console.log(5 === "5"); // false , TS Error
 ```
 
-However, the choices JavaScript makes are not always ideal. For example, in the below example the first statement is false
-because `""` and `"0"` are both strings and are clearly not equal. However, in the second case both `0` and the
-empty string (`""`) are falsy (i.e. behave like `false`) and are therefore equal with respect to `==`. Both statements
-are false when you use `===`.
+Tuy nhiên, những lựa chọn mà JavaScript đưa ra không phải lúc nào cũng lý tưởng. Ví dụ, trong ví dụ dưới đây, câu lệnh đầu tiên là `false` vì `""` và `"0"` đều là chuỗi và rõ ràng là không bằng nhau. Tuy nhiên, trong trường hợp thứ hai, cả `0` và chuỗi rỗng (`""`) đều là giá trị giả (falsy) (tức là hành xử như `false`) và do đó bằng nhau khi so với `==`. Cả hai câu lệnh đều sai khi bạn sử dụng `===`.
 
 ```js
 console.log("" == "0"); // false
@@ -22,45 +17,47 @@ console.log("" === "0"); // false
 console.log(0 === ""); // false
 ```
 
-> Note that `string == number` and `string === number` are both compile time errors in TypeScript, so you don't normally need to worry about this.
+> Lưu ý rằng `string == number` và `string === number` đều là lỗi biên dịch trong TypeScript, vì vậy bạn thường không cần phải lo lắng về điều này.
 
-Similar to `==` vs. `===`, there is `!=` vs. `!==`
+Tương tự như `==` so với `===`, còn có `!=` so với `!==`.
 
-So ProTip: Always use `===` and `!==` except for null checks, which we cover later.
+Vì vậy, mẹo chuyên nghiệp: Luôn sử dụng `===` và `!==`, trừ khi kiểm tra null, mà chúng ta sẽ đề cập sau.
 
-## Structural Equality 
-If you want to compare two objects for structural equality `==`/`===` are ***not*** sufficient. e.g. 
+## So Sánh Bằng Cấu Trúc
+
+Nếu bạn muốn so sánh hai đối tượng để kiểm tra tính bằng cấu trúc, `==`/`===` là **_không_** đủ. Ví dụ:
 
 ```js
-console.log({a:123} == {a:123}); // False
-console.log({a:123} === {a:123}); // False
+console.log({ a: 123 } == { a: 123 }); // False
+console.log({ a: 123 } === { a: 123 }); // False
 ```
-To do such checks use the [deep-equal](https://www.npmjs.com/package/deep-equal) npm package e.g. 
+
+Để thực hiện các kiểm tra như vậy, hãy sử dụng gói npm [deep-equal](https://www.npmjs.com/package/deep-equal), ví dụ:
 
 ```js
 import * as deepEqual from "deep-equal";
 
-console.log(deepEqual({a:123},{a:123})); // True
+console.log(deepEqual({ a: 123 }, { a: 123 })); // True
 ```
 
-However, quite commonly you don't need deep checks and all you really need is to check by some `id` e.g. 
+Tuy nhiên, thường thì bạn không cần kiểm tra sâu và tất cả những gì bạn thực sự cần là kiểm tra theo một số `id`, ví dụ:
 
 ```ts
 type IdDisplay = {
-  id: string,
-  display: string
-}
+  id: string;
+  display: string;
+};
 const list: IdDisplay[] = [
   {
-    id: 'foo',
-    display: 'Foo Select'
+    id: "foo",
+    display: "Foo Select",
   },
   {
-    id: 'bar',
-    display: 'Bar Select'
+    id: "bar",
+    display: "Bar Select",
   },
-]
+];
 
-const fooIndex = list.map(i => i.id).indexOf('foo');
+const fooIndex = list.map((i) => i.id).indexOf("foo");
 console.log(fooIndex); // 0
 ```
