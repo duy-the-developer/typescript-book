@@ -55,7 +55,7 @@ Cuốn sách hoàn toàn miễn phí, bạn có thể sao chép bất kỳ phầ
 - [Bengali](https://github.com/Acesif/typescript-book)
 - [Ukrainian](https://github.com/ArtfulBits/typescript-book)
 
-## Other Options
+## Các Lựa Chọn Khác
 
 Bạn cũng có thể tải xuống một trong các định dạng Epub, Mobi hoặc PDF từ [tab hành động](https://github.com/basarat/typescript-book/actions) bằng cách nhấp vào bản build mới nhất. Bạn sẽ tìm thấy các tệp trong phần artifacts.
 
