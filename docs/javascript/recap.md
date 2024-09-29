@@ -1,45 +1,45 @@
-# Your JavaScript is TypeScript
+# JavaScript của Bạn Là TypeScript
 
-There were (and will continue to be) a lot of competitors in *Some syntax* to *JavaScript* compilers. TypeScript is different from them in that *Your JavaScript is TypeScript*. Here's a diagram:
+Đã có (và sẽ tiếp tục có) nhiều đối thủ cạnh tranh dưới dạng _các cú pháp khác nhau_ được biên dịch sang _JavaScript_. TypeScript khác biệt ở chỗ _JavaScript của bạn chính là TypeScript_. Dưới đây là một biểu đồ minh họa:
 
 ![JavaScript is TypeScript](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
-However, it does mean that *you need to learn JavaScript* (the good news is *you **only** need to learn JavaScript*). TypeScript is just standardizing all the ways you provide *good documentation* on JavaScript.
+Điều này có nghĩa là _bạn cần phải học JavaScript_ (tin vui là _bạn **chỉ cần** học JavaScript_). TypeScript chỉ đơn giản là chuẩn hóa tất cả các cách bạn cung cấp _documentation tốt_ cho JavaScript.
 
-* Just giving you a new syntax doesn't help catch bugs - but might help you write cleaner / less bugs (e.g. CoffeeScript).
-* Creating a new language abstracts you too far from your runtimes and communities - but might help on-board you easier if its an already familiar flavour (e.g. Dart - closer for Java / C# devs).
+- Chỉ cung cấp một cú pháp mới không giúp bắt lỗi, nhưng có thể giúp bạn viết mã sạch hơn / ít lỗi hơn (ví dụ: CoffeeScript).
+- Tạo ra một ngôn ngữ mới có thể khiến bạn rời xa khỏi môi trường runtime và cộng đồng của mình – nhưng có thể giúp bạn tiếp cận dễ dàng hơn nếu đó là một ngôn ngữ quen thuộc (ví dụ: Dart - gần gũi hơn với các nhà phát triển Java / C#).
 
-TypeScript is just JavaScript with docs.
+TypeScript chỉ là JavaScript kèm tài liệu.
 
-> JSNext is open to interpretation - not everything proposed for the next version of JS actually makes it to browsers. TypeScript only adds support for proposals once they reach [stage 3](https://tc39.es/process-document/).
+> JSNext có tính mở để diễn giải - không phải mọi đề xuất cho phiên bản JS tiếp theo đều sẽ đến được với các trình duyệt. TypeScript chỉ bổ sung hỗ trợ cho các đề xuất khi chúng đạt đến [giai đoạn 3](https://tc39.es/process-document/).
 
-## Making JavaScript Better
+## Cải Tiến JavaScript
 
-TypeScript will try to protect you from portions of JavaScript that never worked (so you don't need to remember this stuff):
+TypeScript sẽ cố gắng bảo vệ bạn khỏi những phần của JavaScript vốn không bao giờ hoạt động đúng (vì vậy bạn không cần phải nhớ những điều này):
 
 ```ts
-[] + []; // JavaScript will give you "" (which makes little sense), TypeScript will error
+[] + []; // JavaScript sẽ cho bạn "", TypeScript sẽ báo lỗi
 
 //
-// other things that are nonsensical in JavaScript
-// - don't give a runtime error (making debugging hard)
-// - but TypeScript will give a compile time error (making debugging unnecessary)
+// các thứ vô lý khác trong JavaScript
+// - không báo lỗi tại runtime (khiến việc gỡ lỗi trở nên khó khăn)
+// - nhưng TypeScript sẽ báo lỗi tại thời điểm biên dịch (giúp việc gỡ lỗi không còn cần thiết)
 //
 {} + []; // JS : 0, TS Error
 [] + {}; // JS : "[object Object]", TS Error
 {} + {}; // JS : NaN or [object Object][object Object] depending upon browser, TS Error
 "hello" - 1; // JS : NaN, TS Error
 
-function add(a,b) {
-  return
-    a + b; // JS : undefined, TS Error 'unreachable code detected'
+function add(a, b) {
+  return;
+  a + b; // JS : undefined, TS Error 'unreachable code detected'
 }
 ```
 
-Essentially TypeScript is linting JavaScript. Just doing a better job at it than other linters that don't have *type information*.
+Về cơ bản, TypeScript đang thực hiện kiểm tra lỗi cho JavaScript, và thực hiện điều đó tốt hơn so với các công cụ kiểm tra lỗi khác không có _thông tin kiểu dữ liệu_.
 
-## You still need to learn JavaScript
+## Bạn Vẫn Cần Phải Học JavaScript
 
-That said TypeScript is very pragmatic about the fact that *you do write JavaScript* so there are some things about JavaScript that you still need to know in order to not be caught off-guard. Let's discuss them next.
+Như đã đề cập, TypeScript rất thực tế về việc bạn sẽ viết JavaScript, vì vậy có một số điều về JavaScript mà bạn vẫn cần phải biết để không bị bất ngờ. Chúng ta sẽ thảo luận về những điều đó trong phần tiếp theo.
 
-> Note: TypeScript is a superset of JavaScript. Just with documentation that can actually be used by compilers / IDEs ;)
+> Lưu ý: TypeScript là một phần mở rộng của JavaScript, chỉ khác là nó có tài liệu mà các trình biên dịch / IDE có thể sử dụng được ;)
